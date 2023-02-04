@@ -1,4 +1,4 @@
-import { Pad } from './pad.mjs'
+import { PadImpl } from './pad.mjs'
 
 /** @type { IPad[][] } */ 
 const Pads = []
@@ -51,13 +51,13 @@ function initialize() {
     Pads.push(row)
     for (let col=0; col<10; col++) {
       /** @type { IPad } */ 
-      const pad = new Pad(row, col);
+      const pad = new PadImpl(row, col);
       row.push(pad)
     }
   }
 }
 
-/** @typedef { import('../types').IPad } IPad */
-/** @typedef { import('../types').PadEvent } PadEvent */
-/** @typedef { import('../types').PadEventType } EventType */
-/** @typedef { import('../types').Pattern } Pattern */
+/** @typedef { import('../../types').Pad } IPad */
+/** @typedef { import('../../types').PadEvent } PadEvent */
+/** @typedef { import('../../types').PadEventType } EventType */
+/** @typedef { import('../../types').Pattern } Pattern */

@@ -1,13 +1,15 @@
-/** @type {RGB} */
+/** @type { RGB } */
 const Black = { r: 0, g: 0, b: 0 }
 
-/** @implements {IPad} */
-export class Pad  {
+/** @implements { Pad } */
+export class PadImpl  {
+
   /** @param {number} row */
   /** @param {number} col */
   constructor(row, col) {
     this._row = row
     this._col = col
+
     /** @type {RGB} */
     this._color = Black
     /** @type {RGB} */
@@ -29,8 +31,13 @@ export class Pad  {
   }
 
   /** @type { ( type: EventType, listener: (event: PadEvent) => void) => void } */
+  once( type, listener) {
+    this._events.addEventListener(type, listener, { once: true })
+  }
+
+  /** @type { ( type: EventType, listener: (event: PadEvent) => void) => void } */
   removeEventListener( type, listener) {
-    this._events.addEventListener(type, listener)
+    this._events.removeEventListener(type, listener)
   }
 
   /** @type { ( color: RGB) => void } */
@@ -55,8 +62,8 @@ export class Pad  {
   }
 }
 
-/** @typedef { import('../types').RGB } RGB */
-/** @typedef { import('../types').IPad } IPad */
-/** @typedef { import('../types').PadEvent } PadEvent */
-/** @typedef { import('../types').PadEventType } EventType */
-/** @typedef { import('../types').Pattern } Pattern */
+/** @typedef { import('../../types').RGB } RGB */
+/** @typedef { import('../../types').Pad } Pad */
+/** @typedef { import('../../types').PadEvent } PadEvent */
+/** @typedef { import('../../types').PadEventType } EventType */
+/** @typedef { import('../../types').Pattern } Pattern */

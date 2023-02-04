@@ -30,29 +30,9 @@ The following libraries are available as built-in globals:
 library `lp`
 ================================================================================
 
-`setPadColor(x: number, y: number, color: number): void`
-
-blah blah
-
-`setPadPulse(x: number, y: number, color: number): void`
-
-blah blah
-
-`setPadFlash(x: number, y: number, colorOn: number): void`
-
-blah blah
-
-`async onEvent(eventName: string, handler: (event:Event) => void): void`
-
-blah blah
-
 
 library `midi`
 ================================================================================
-
-`createMidiPort(name: string): MidiPort`
-
-blah blah
 
 
 install

@@ -1,33 +1,43 @@
-#!/usr/bin/env npx zx
+#!/usr/bin/env node
 
 import 'zx/globals'
-import * as jzz from 'jzz'
-import * as lp from './lib/lp.mjs'
-import * as midi from './lib/midi.mjs'
 
-const ENV_DEBUG = process.env.DEBUG != null
+import * as lp from './libraries/lp/index.mjs'
+export * as lp from './libraries/lp/index.mjs'
+
+import * as midi from './libraries/midi/index.mjs'
+export * as midi from './libraries/midi/index.mjs'
+
+import { resolve } from 'node:path'
+import { logDebug, logFatal } from './lib/log.mjs'
 
 let script = process.argv[2]
-if (script.endsWith('lp-script.mjs')) script = process.argv[3]
 
-console.log(`argv: ${process.argv.join(' ,')}`)
-main(script)
+const scriptResolved = resolve(script)
+logDebug(`script argument from command-line: "${script}"`)
+logDebug(`script resolved:                   "${scriptResolved}"`)
+
+main(scriptResolved)
 
 /** @type { (script: string) => Promise<void> } */
 async function main(script) {
-  console.log(`main("${script}")`)
+  logDebug(`main("${script}")`)
   if (!script) {
     await $`cat README.md`
     process.exit(1)
   }
 
-  Object.assign(global, { jzz, lp, midi })
+  // assignment gets some type checking on our exports / "type doc"
+  /** @type { Libraries } */  
+  const libraries = { lp, midi }
+  Object.assign(global, libraries)
   
   try {
-    console.log(`about to import "${script}"`)
+    logDebug(`about to import "${script}"`)
     await import(script)
   } catch (err) {
-    console.log(`error importing script: ${err}`)
-    process.exit(1)
+    logFatal('error importing script', err)
   }
 }
+
+/** @typedef { import('./types').Libraries } Libraries */

@@ -31,4 +31,4 @@ function toHex(n) {
   return n.toString(16).padStart(2, '0')
 }
 
-/** @typedef { import('../types').RGB } RGB */
+/** @typedef { import('../../types').RGB } RGB */

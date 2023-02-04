@@ -9,7 +9,7 @@ const PaletteCache = new Map()
 initialize()
 
 /** @type { (rgb: RGB) => number } */
-function rgb2palette(rgb) {
+export function rgb2palette(rgb) {
   const string = rgbToString(rgb)
   const cached = PaletteCache.get(string)
   if (cached != null) return cached
@@ -23,6 +23,8 @@ function rgb2palette(rgb) {
       closestDistance = distance
       closestIndex = i
     }
+
+    if (closestDistance === 0) break
   }
 
   PaletteCache.set(string, closestIndex)
@@ -31,19 +33,17 @@ function rgb2palette(rgb) {
 
 /** @type { (rgb1: RGB, rgb2: RGB) => number } */
 function getDistance(rgb1, rgb2) {
-  return (
-    Math.pow(rgb1.r - rgb2.r, 2) +
-    Math.pow(rgb1.g - rgb2.g, 2) +
-    Math.pow(rgb1.b - rgb2.b, 2)
-  )
+  const [ rd, gd, bd ] = [rgb1.r - rgb2.r, rgb1.g - rgb2.g, rgb1.b - rgb2.b]
+  return rd*rd + gd*gd + bd*bd // don't really need to sqrt this :-)
 }
 
 function initialize() {
-  // first 4 entries!
   Palette.push(stringToRgb('#000000'))
   Palette.push(stringToRgb('#2A2A2A'))
   Palette.push(stringToRgb('#555555'))
   Palette.push(stringToRgb('#7F7F7F'))
+
+  // add remaining entries :-)
 }
 
-/** @typedef { import('../types').RGB } RGB */
+/** @typedef { import('../../types').RGB } RGB */
