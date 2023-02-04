@@ -2,26 +2,29 @@
 
 import 'zx/globals'
 
-import * as lp from './libraries/lp/index.mjs'
-export * as lp from './libraries/lp/index.mjs'
+import * as launchpad from './libraries/launchpad/index.mjs'
+export * as launchpad from './libraries/launchpad/index.mjs'
 
 import * as midi from './libraries/midi/index.mjs'
 export * as midi from './libraries/midi/index.mjs'
 
+import './globals.mjs'
+
 import { resolve } from 'node:path'
 import { logDebug, logFatal } from './lib/log.mjs'
+import { isMainModule } from './lib/is-main-module.mjs'
 
-let script = process.argv[2]
+if (isMainModule(import.meta.url)) main()
 
-const scriptResolved = resolve(script)
-logDebug(`script argument from command-line: "${script}"`)
-logDebug(`script resolved:                   "${scriptResolved}"`)
+async function main() {
+  const scriptArg = process.argv[2]
+  if (!scriptArg) {
+    logFatal('script required as argument')
+  }
 
-main(scriptResolved)
-
-/** @type { (script: string) => Promise<void> } */
-async function main(script) {
-  logDebug(`main("${script}")`)
+  const script = resolve(scriptArg)
+  logDebug(`script argument from command-line: "${scriptArg}"`)
+  logDebug(`script resolved:                   "${script}"`)
   if (!script) {
     await $`cat README.md`
     process.exit(1)
@@ -29,8 +32,7 @@ async function main(script) {
 
   // assignment gets some type checking on our exports / "type doc"
   /** @type { Libraries } */  
-  const libraries = { lp, midi }
-  Object.assign(global, libraries)
+  const libraries = { launchpad, midi }
   
   try {
     logDebug(`about to import "${script}"`)

@@ -6,7 +6,7 @@ export interface MidiPortOptions {
 
 export type OnMessage = (deltaTime: number, message: number[]) => void
 
-export interface MidiPort {
+export interface MidiPortDesc {
   name:       string
   hasInput:   boolean
   hasOutput:  boolean

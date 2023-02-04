@@ -1,15 +1,17 @@
+
 export interface Libraries {
-  lp: lp
-  midi: midi
+  midi: MidiLibrary
+  launchpad: LaunchpadLibrary
 }
 
-export interface lp {
+export interface LaunchpadLibrary {
   getPad(row: number, col: number): Pad
   getPads(row1: number, row2: number, col1: number, col2: number): Pad[][]
 }
 
-export interface midi {
-  
+export interface MidiLibrary {
+  listPorts(): string[]
+  openPort(name: string): MidiPort
 }
 
 export type RGB = { r: number, g: number, b: number }
@@ -33,4 +35,15 @@ export interface Pad {
   readonly pattern: Pattern
   addEventListener( type: PadEventType, listener: (event: PadEvent) => void): void
   removeEventListener( type: PadEventType, listener: (event: PadEvent) => void): void
+}
+
+export interface MidiPort {
+  readonly name:   string
+  readonly iName:  string
+  readonly oName:  string
+  readonly iIndex: number
+  readonly oIndex: number
+  getMessage(): Promise<{ deltaTime: number, message: number[] }>
+  sendMessage(message: number[]): void
+  close(): void
 }

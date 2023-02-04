@@ -1,7 +1,13 @@
+import { require } from '../../lib/require.mjs'
+
 const midi = require('midi')
+
 import { matchNames } from './name-matcher.mjs'
 
-/** @type { () => Map<string, MidiPort> } */
+// const ports = Array.from(getPorts().entries())
+// console.log(JSON.stringify(ports, null, 4))
+
+/** @type { () => Map<string, MidiPortDesc> } */
 export function getPorts() {
   const iPorts = getPortsRaw(true)
   const oPorts = getPortsRaw(false)
@@ -19,7 +25,7 @@ export function getPorts() {
 
   const matched = matchNames(iPortsMap.keys(), oPortsMap.keys())
 
-  /** @type { MidiPort[] } */
+  /** @type { MidiPortDesc[] } */
   const result = []
   const unknownPort = { name: 'unknown', index: -1 }
 
@@ -68,7 +74,7 @@ export function getPorts() {
     }
   }
 
-  /** @type { Map<string, MidiPort> } */
+  /** @type { Map<string, MidiPortDesc> } */
   const resultMap = new Map()
   for (const midiPort of result) {
     resultMap.set(midiPort.name, midiPort)
@@ -95,4 +101,4 @@ function getPortsRaw(isInput) {
 
 /** @typedef { import('./types-internal').OnMessage } OnMessage */
 /** @typedef { import('./types-internal').MidiPortOptions } MidiPortOptions */
-/** @typedef { import('./types-internal').MidiPort } MidiPort */
+/** @typedef { import('./types-internal').MidiPortDesc } MidiPortDesc */

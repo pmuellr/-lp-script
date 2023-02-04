@@ -9,6 +9,7 @@
   "bin": {
     "lp-script": "lp-script.mjs"
   },
+  "types": "./types.ts",
   "scripts": {},
   "repository": {
     "type": "git",
