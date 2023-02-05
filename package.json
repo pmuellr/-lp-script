@@ -1,13 +1,15 @@
 {
   "name": "lp-script",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
   "description": "Novation Launchpad script runner",
   "license": "MIT",
   "author": "Patrick Mueller <pmuellr@apache.org> (https://github.com/pmuellr)",
   "homepage": "https://github.com/pmuellr/lp-script",
+  "main": "./lp-script.mjs",
   "bin": {
-    "lp-script": "lp-script.mjs"
+    "lp-script": "./lp-script.mjs"
   },
   "types": "./types.ts",
   "scripts": {},

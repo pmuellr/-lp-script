@@ -75,7 +75,7 @@ function firstWordRemoved(s) {
   return words.join(' ')
 }
 
-/** @type { (s: string): s } */
+/** @type { (s: string) => s } */
 function lastWordRemoved(s) {
   const words = s.trim().split(/\s+/g)
   words.pop()

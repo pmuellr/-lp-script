@@ -7,6 +7,8 @@ import { matchNames } from './name-matcher.mjs'
 // const ports = Array.from(getPorts().entries())
 // console.log(JSON.stringify(ports, null, 4))
 
+// /** @type { () => Map<string, MidiPortDesc> } */
+
 /** @type { () => Map<string, MidiPortDesc> } */
 export function getPorts() {
   const iPorts = getPortsRaw(true)
