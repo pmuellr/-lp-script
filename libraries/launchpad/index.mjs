@@ -57,7 +57,7 @@ function initialize() {
   }
 }
 
-/** @typedef { import('../../types').Pad } IPad */
-/** @typedef { import('../../types').PadEvent } PadEvent */
-/** @typedef { import('../../types').PadEventType } EventType */
-/** @typedef { import('../../types').Pattern } Pattern */
+/** @typedef { import('./types').Pad } IPad */
+/** @typedef { import('./types').PadEvent } PadEvent */
+/** @typedef { import('./types').PadEventType } EventType */
+/** @typedef { import('./types').Pattern } Pattern */

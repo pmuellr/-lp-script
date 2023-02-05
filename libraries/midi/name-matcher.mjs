@@ -66,7 +66,7 @@ function newStringSet() {
   return set
 }
 
-/** @type { (s: string): s } */
+/** @type { (s: string) => s } */
 function firstWordRemoved(s) {
   const words = s.trim().split(/\s+/g)
   words.shift()

@@ -90,4 +90,4 @@ export function openPort(name) {
 }
 
 /** @template T @typedef { { wait(): Promise<T>; signal(value: T): void; isEmitted(): boolean; } } ReadySignal */
-/** @typedef { import('../../types').MidiPort } MidiPort */
+/** @typedef { import('./types').MidiPort } MidiPort */

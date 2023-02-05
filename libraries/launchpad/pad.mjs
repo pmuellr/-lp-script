@@ -1,7 +1,7 @@
 /** @type { RGB } */
 const Black = { r: 0, g: 0, b: 0 }
 
-/** @implements { Pad } */
+/** @implements {Pad} */
 export class PadImpl  {
 
   /** @param {number} row */
@@ -62,8 +62,8 @@ export class PadImpl  {
   }
 }
 
-/** @typedef { import('../../types').RGB } RGB */
-/** @typedef { import('../../types').Pad } Pad */
-/** @typedef { import('../../types').PadEvent } PadEvent */
-/** @typedef { import('../../types').PadEventType } EventType */
-/** @typedef { import('../../types').Pattern } Pattern */
+/** @typedef { import('./types').RGB } RGB */
+/** @typedef { import('./types').Pad } Pad */
+/** @typedef { import('./types').PadEvent } PadEvent */
+/** @typedef { import('./types').PadEventType } EventType */
+/** @typedef { import('./types').Pattern } Pattern */

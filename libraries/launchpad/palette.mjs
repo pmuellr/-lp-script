@@ -46,4 +46,4 @@ function initialize() {
   // add remaining entries :-)
 }
 
-/** @typedef { import('../../types').RGB } RGB */
+/** @typedef { import('./types').RGB } RGB */
